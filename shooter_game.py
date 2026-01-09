@@ -14,12 +14,21 @@ FPS = 60
 #variables
 game_is_running = True
 background_color = (0,0,0)
+#player
+player_x_pos = 200
+player_y_pos = 200
+
+player_img = pygame.image.load("./assets/img/player/idle/0.png")
+player_rect = player_img.get_rect()
+player_rect.center = (player_x_pos, player_y_pos)
 
 #game loop
 while game_is_running:
     clock.tick(FPS)
     #fill background
     screen.fill(background_color)
+    #display player img at player rect pos
+    screen.blit(player_img, player_rect)
 
     #game events
     for event in pygame.event.get():
