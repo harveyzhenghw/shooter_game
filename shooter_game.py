@@ -17,8 +17,9 @@ background_color = (0,0,0)
 #player
 player_x_pos = 200
 player_y_pos = 200
-
+player_scale = 2
 player_img = pygame.image.load("./assets/img/player/idle/0.png")
+player_img = pygame.transform.scale(player_img,(player_img.get_width()*player_scale, player_img.get_height()*player_scale) )
 player_rect = player_img.get_rect()
 player_rect.center = (player_x_pos, player_y_pos)
 
