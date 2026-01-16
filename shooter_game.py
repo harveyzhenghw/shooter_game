@@ -26,11 +26,11 @@ while game_is_running:
     clock.tick(FPS)
     #fill background
     screen.fill(background_color)
-
-        #display player img at player rect pos
-    player_1.draw(screen)
     #moving player rect
     player_1.move()
+    #display player img at player rect pos
+    player_1.draw(screen)
+  
     #game events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
