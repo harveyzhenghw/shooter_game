@@ -1,6 +1,7 @@
 #import and int
 import pygame
 pygame.init()
+max_accelaration_in_seconds = 0.35
 
 class Soldier(pygame.sprite.Sprite):
     def __init__(self, x_pos, y_pos, scale, speed):
@@ -14,6 +15,9 @@ class Soldier(pygame.sprite.Sprite):
         self.speed = speed
         self.moving_right = False
         self.moving_left = False
+
+        self.current_speed = 0
+        self.accel_step = self.speed / (100*max_accelaration_in_seconds)#60 == FPS
 
 
 
@@ -31,17 +35,29 @@ class Soldier(pygame.sprite.Sprite):
         dx = 0
         dy = 0
 
+        target_speed = 0
+
         #right
         if self.moving_right:
-            dx = self.speed
+            target_speed = self.speed
             pass
         #left
         if self.moving_left:
-            dx = -self.speed
+            target_speed = -self.speed
             pass
 
+        #gradually move the current_speed toward the target_speed
+        if self.current_speed < target_speed:
+            self.current_speed += self.accel_step
+            if self.current_speed > target_speed:
+                self.current_speed = target_speed
+        elif self.current_speed > target_speed:
+            self.current_speed -= self.accel_step
+            if self.current_speed < target_speed:
+                self.current_speed = target_speed
+        dx = self.current_speed
         #update rect pos
-        self.rect.x += dx
-        self.rect.y += dy
+        self.rect.x += int(dx)
+        self.rect.y += int(dy)
 
     
