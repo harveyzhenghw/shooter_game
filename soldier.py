@@ -26,5 +26,22 @@ class Soldier(pygame.sprite.Sprite):
         self.rect.center = (x_pos, y_pos)
     def draw(self, screen):
         screen.blit(self.image, self.rect)
+    def move(self):
+        #reset movment
+        dx = 0
+        dy = 0
+
+        #right
+        if self.moving_right:
+            dx = self.speed
+            pass
+        #left
+        if self.moving_left:
+            dx = -self.speed
+            pass
+
+        #update rect pos
+        self.rect.x += dx
+        self.rect.y += dy
 
     

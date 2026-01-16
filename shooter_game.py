@@ -16,7 +16,7 @@ FPS = 60
 game_is_running = True
 background_color = (0,0,0)
 #player
-player_1 = Soldier(x_pos = 200, y_pos = 300, scale=2)
+player_1 = Soldier(x_pos = 200, y_pos = 300, scale=2, speed = 5)
 
 
 #game loop
@@ -27,10 +27,37 @@ while game_is_running:
 
         #display player img at player rect pos
     player_1.draw(screen)
+    #moving player rect
+    player_1.move()
     #game events
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             game_is_running = False
+
+        
+
+        
+
+        #keyboard input(keydown)
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_d:
+                player_1.moving_right = True
+                pass
+            if event.key == pygame.K_a:
+                player_1.moving_left = True
+                pass
+
+        #keyboard input(keyup)
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_d:
+                player_1.moving_right = False
+                pass
+            if event.key == pygame.K_a:
+                player_1.moving_left = False
+                pass
+
+
+
 
 
     #update display
