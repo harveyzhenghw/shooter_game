@@ -52,6 +52,9 @@ while game_is_running:
             if event.key == pygame.K_a:
                 player_1.moving_left = True
                 pass
+            if event.key ==pygame.K_w:
+                player_1.jump = True
+
 
         #keyboard input(keyup)
         if event.type == pygame.KEYUP:
