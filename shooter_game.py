@@ -14,9 +14,11 @@ pygame.display.set_caption("Brave Hero")
 clock = pygame.time.Clock()
 FPS = 100
 
+
 #variables
 game_is_running = True
 background_color = (0,0,0)
+RED = (255,0,0)
 #player
 player_1 = Soldier(char_type="player",x_pos = 200, y_pos = 300, scale=2, speed = 5)
 enemy_1= Soldier(char_type="enemy",x_pos = 400, y_pos = 300, scale=2, speed = 5)
@@ -27,6 +29,8 @@ while game_is_running:
     clock.tick(FPS)
     #fill background
     screen.fill(background_color)
+    #draw a line
+    pygame.draw.line(screen, RED, (0,500), (SCREEN_WIDTH,500), 10)
     #moving player rect
     #PLAYER
     player_1.move()
