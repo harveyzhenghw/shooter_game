@@ -18,7 +18,8 @@ FPS = 100
 game_is_running = True
 background_color = (0,0,0)
 #player
-player_1 = Soldier(x_pos = 200, y_pos = 300, scale=2, speed = 5)
+player_1 = Soldier(char_type="player",x_pos = 200, y_pos = 300, scale=2, speed = 5)
+enemy_1= Soldier(char_type="enemy",x_pos = 400, y_pos = 300, scale=2, speed = 5)
 
 
 #game loop
@@ -27,9 +28,12 @@ while game_is_running:
     #fill background
     screen.fill(background_color)
     #moving player rect
+    #PLAYER
     player_1.move()
     #display player img at player rect pos
     player_1.draw(screen)
+    #ENEMY
+    enemy_1.draw(screen)
   
     #game events
     for event in pygame.event.get():

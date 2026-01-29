@@ -4,8 +4,10 @@ pygame.init()
 max_accelaration_in_seconds = 0.35
 
 class Soldier(pygame.sprite.Sprite):
-    def __init__(self, x_pos, y_pos, scale, speed):
+    def __init__(self, char_type, x_pos, y_pos, scale, speed):
         super().__init__()
+
+        self.char_type = char_type
 
         self.x_pos = x_pos
         self.y_pos = y_pos
@@ -24,7 +26,7 @@ class Soldier(pygame.sprite.Sprite):
 
 
 
-        original_img = pygame.image.load("./assets/img/player/Idle/0.png")
+        original_img = pygame.image.load(f"./assets/img/{self.char_type}/Idle/0.png")
         self.image = pygame.transform.scale(
             original_img,
             (original_img.get_width()*scale, original_img.get_height()*scale)
