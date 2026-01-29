@@ -16,6 +16,9 @@ class Soldier(pygame.sprite.Sprite):
         self.moving_right = False
         self.moving_left = False
 
+        self.flip = False
+        self.direction = 1
+
         self.current_speed = 0
         self.accel_step = self.speed / (100*max_accelaration_in_seconds)#60 == FPS
 
@@ -29,7 +32,7 @@ class Soldier(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (x_pos, y_pos)
     def draw(self, screen):
-        screen.blit(self.image, self.rect)
+        screen.blit(pygame.transform.flip(self.image, self.flip, False), self.rect)
     def move(self):
         #reset movment
         dx = 0
@@ -40,10 +43,14 @@ class Soldier(pygame.sprite.Sprite):
         #right
         if self.moving_right:
             target_speed = self.speed
+            self.flip = False
+            self.direction = 1
             pass
         #left
         if self.moving_left:
             target_speed = -self.speed
+            self.flip = True
+            self.direction = -1
             pass
 
         #gradually move the current_speed toward the target_speed
