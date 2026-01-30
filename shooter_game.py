@@ -20,8 +20,8 @@ game_is_running = True
 background_color = (0,0,0)
 RED = (255,0,0)
 #player
-player_1 = Soldier(char_type="player",x_pos = 200, y_pos = 300, scale=2, speed = 5)
-enemy_1= Soldier(char_type="enemy",x_pos = 400, y_pos = 300, scale=2, speed = 5)
+player_1 = Soldier(char_type="player",x_pos = 200, y_pos = 465, scale=2, speed = 5)
+enemy_1= Soldier(char_type="enemy",x_pos = 400, y_pos = 465, scale=2, speed = 5)
 
 
 #game loop

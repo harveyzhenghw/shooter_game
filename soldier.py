@@ -82,6 +82,11 @@ class Soldier(pygame.sprite.Sprite):
         
         dx = self.current_speed
         dy = self.velocity_y
+
+        #check collistion with floor
+
+        if self.rect.bottom + dy > 500:
+            dy = 500- self.rect.bottom
         #update rect pos
         self.rect.x += int(dx)
         self.rect.y += int(dy)
