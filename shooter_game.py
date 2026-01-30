@@ -34,6 +34,8 @@ while game_is_running:
     #moving player rect
     #PLAYER
     player_1.move()
+    #update animation
+    player_1.update_animation()
     #display player img at player rect pos
     player_1.draw(screen)
     #ENEMY
