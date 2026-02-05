@@ -60,6 +60,32 @@ class Soldier(pygame.sprite.Sprite):
 
         self.animation_list.append(temp_list)
 
+ #run
+        temp_list = []
+
+        for i in range(6):
+            original_img = pygame.image.load(f"./assets/img/{self.char_type}/Run/{i}.png")
+            img = pygame.transform.scale(
+            original_img,
+            (original_img.get_width()*scale, original_img.get_height()*scale)
+            )
+          
+
+            temp_list.append(img)
+
+        self.animation_list.append(temp_list)
+
+
+
+
+
+
+
+
+
+
+
+
         self.image = self.animation_list[self.action][self.frame_index]
 
 
@@ -82,6 +108,16 @@ class Soldier(pygame.sprite.Sprite):
             self.frame_index +=1
             if self.frame_index >= len(self.animation_list[self.action]):
                 self.frame_index = 0
+
+
+
+    def update_action(self, new_action):
+        #check if the new action is different than the previous one
+        if new_action != self.action:
+            self.action = new_action
+            #update the animation settings
+            self.frame_index = 0
+            self.update_time = pygame.time.get_ticks()
 
 
 

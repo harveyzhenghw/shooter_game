@@ -31,8 +31,14 @@ while game_is_running:
     screen.fill(background_color)
     #draw a line
     pygame.draw.line(screen, RED, (0,500), (SCREEN_WIDTH,500), 10)
-    #moving player rect
+    
     #PLAYER
+    if player_1.moving_left or player_1.moving_right:
+        player_1.update_action(1)#run
+    else:
+        player_1.update_action(0)
+
+    #moving player rect
     player_1.move()
     #update animation
     player_1.update_animation()
