@@ -33,13 +33,17 @@ while game_is_running:
     pygame.draw.line(screen, RED, (0,500), (SCREEN_WIDTH,500), 10)
     
     #PLAYER
-    if player_1.moving_left or player_1.moving_right:
-        player_1.update_action(1)#run
-    else:
-        player_1.update_action(0)
+    if player_1.alive:
+        
+        
 
-    #moving player rect
-    player_1.move()
+        if player_1.moving_left or player_1.moving_right:
+            player_1.update_action(1)#run
+        else:
+            player_1.update_action(0)
+
+        #moving player rect
+        player_1.move()
     #update animation
     player_1.update_animation()
     #display player img at player rect pos

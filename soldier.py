@@ -8,6 +8,7 @@ JUMP_FORCE = 12
 class Soldier(pygame.sprite.Sprite):
     def __init__(self, char_type, x_pos, y_pos, scale, speed):
         super().__init__()
+        self.alive = True
 
         self.char_type = char_type
 
