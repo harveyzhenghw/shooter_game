@@ -22,6 +22,8 @@ class Soldier(pygame.sprite.Sprite):
 
         self.flip = False
         self.direction = 1
+
+        self.action = 0
         
         self.jump = False
         self.velocity_y = 0
@@ -42,14 +44,23 @@ class Soldier(pygame.sprite.Sprite):
 
         self.update_time = pygame.time.get_ticks()
 
+
+        #idle
+        temp_list = []
+
         for i in range(5):
             original_img = pygame.image.load(f"./assets/img/{self.char_type}/Idle/{i}.png")
             img = pygame.transform.scale(
             original_img,
             (original_img.get_width()*scale, original_img.get_height()*scale)
             )
-            self.animation_list.append(img)
-        self.image = self.animation_list[self.frame_index]
+          
+
+            temp_list.append(img)
+
+        self.animation_list.append(temp_list)
+
+        self.image = self.animation_list[self.action][self.frame_index]
 
 
 
@@ -64,12 +75,12 @@ class Soldier(pygame.sprite.Sprite):
 
         ANIMATION_COOLDOWN = 100
         #update image depending on current frame
-        self.image = self.animation_list[self.frame_index]
+        self.image = self.animation_list[self.action][self.frame_index]
         #check if enough time has passed
         if pygame.time.get_ticks()-self.update_time > ANIMATION_COOLDOWN:
             self.update_time = pygame.time.get_ticks()
             self.frame_index +=1
-            if self.frame_index >= len(self.animation_list):
+            if self.frame_index >= len(self.animation_list[self.action]):
                 self.frame_index = 0
 
 
