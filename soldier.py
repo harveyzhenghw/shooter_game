@@ -1,5 +1,5 @@
 #import and int
-import pygame
+import pygame, os
 pygame.init()
 max_accelaration_in_seconds = 0.3
 GRAVITY = 0.5
@@ -45,46 +45,27 @@ class Soldier(pygame.sprite.Sprite):
 
         self.update_time = pygame.time.get_ticks()
 
-
-        #idle
-        temp_list = []
-
-        for i in range(5):
-            original_img = pygame.image.load(f"./assets/img/{self.char_type}/Idle/{i}.png")
-            img = pygame.transform.scale(
-            original_img,
-            (original_img.get_width()*scale, original_img.get_height()*scale)
-            )
-          
-
-            temp_list.append(img)
-
-        self.animation_list.append(temp_list)
-
- #run
-        temp_list = []
-
-        for i in range(6):
-            original_img = pygame.image.load(f"./assets/img/{self.char_type}/Run/{i}.png")
-            img = pygame.transform.scale(
-            original_img,
-            (original_img.get_width()*scale, original_img.get_height()*scale)
-            )
-          
-
-            temp_list.append(img)
-
-        self.animation_list.append(temp_list)
+        animation_types = ["Idle","Run",'Jump', "Death"]
+        for animation in animation_types:
 
 
 
+                
+                temp_list = []
+                #num_of frames in a folder
+                num_of_frames = len(os.listdir(f"./assets/img/{self.char_type}/{animation}"))
 
+                for i in range(num_of_frames):
+                    original_img = pygame.image.load(f"./assets/img/{self.char_type}/{animation}/{i}.png")
+                    img = pygame.transform.scale(
+                    original_img,
+                    (original_img.get_width()*scale, original_img.get_height()*scale)
+                    )
+                
 
+                    temp_list.append(img)
 
-
-
-
-
+                self.animation_list.append(temp_list)
 
 
         self.image = self.animation_list[self.action][self.frame_index]
