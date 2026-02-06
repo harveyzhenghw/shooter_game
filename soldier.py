@@ -27,6 +27,10 @@ class Soldier(pygame.sprite.Sprite):
         self.action = 0
         
         self.jump = False
+        self.in_air = True
+
+
+
         self.velocity_y = 0
 
         self.current_speed = 0
@@ -127,9 +131,10 @@ class Soldier(pygame.sprite.Sprite):
             self.direction = -1
             pass
 
-        if self.jump:
+        if self.jump and not self.in_air:
             self.velocity_y = -JUMP_FORCE
             self.jump = False
+            self.in_air = True
 
         #gradually move the current_speed toward the target_speed
         if self.current_speed < target_speed:
@@ -155,6 +160,7 @@ class Soldier(pygame.sprite.Sprite):
 
         if self.rect.bottom + dy > 500:
             dy = 500- self.rect.bottom
+            self.in_air = False
         #update rect pos
         self.rect.x += int(dx)
         self.rect.y += int(dy)

@@ -34,11 +34,15 @@ while game_is_running:
     
     #PLAYER
     if player_1.alive:
+
+        if player_1.in_air:
+            player_1.update_action(2)# jump
         
         
 
-        if player_1.moving_left or player_1.moving_right:
-            player_1.update_action(1)#run
+        
+        elif player_1.moving_left or player_1.moving_right:
+                player_1.update_action(1)#run
         else:
             player_1.update_action(0)
 
