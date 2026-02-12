@@ -47,7 +47,8 @@ while game_is_running:
     if player_1.alive:
 
         if player_1.shoot:
-            bullet = Bullet(player_1.rect.centerx, player_1.rect.centery, player_1.direction)
+            bullet = Bullet(player_1.rect.centerx + (player_1.rect.size[0]*0.6*player_1.direction), player_1.rect.centery, player_1.direction)
+            player_1.shoot = False
             bullet_group.add(bullet)
 
         if player_1.in_air:
