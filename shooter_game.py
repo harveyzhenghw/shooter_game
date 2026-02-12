@@ -1,9 +1,11 @@
 #import and int676
 import pygame
+from soldier import Soldier
+from bullet import Bullet
+
 pygame.init()
 
 
-from soldier import Soldier
 #screen
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 0.8 * SCREEN_WIDTH
@@ -23,6 +25,10 @@ RED = (255,0,0)
 player_1 = Soldier(char_type="player",x_pos = 200, y_pos = 465, scale=2, speed = 5)
 enemy_1= Soldier(char_type="enemy",x_pos = 400, y_pos = 465, scale=2, speed = 5)
 
+# create sprite groups
+
+bullet_group = pygame.sprite.Group()
+
 
 #game loop
 while game_is_running:
@@ -31,9 +37,18 @@ while game_is_running:
     screen.fill(background_color)
     #draw a line
     pygame.draw.line(screen, RED, (0,500), (SCREEN_WIDTH,500), 10)
+
+    #update and draw groups
+    bullet_group.update()
+
+    bullet_group.draw(screen)
     
     #PLAYER
     if player_1.alive:
+
+        if player_1.shoot:
+            bullet = Bullet(player_1.rect.centerx, player_1.rect.centery, player_1.direction)
+            bullet_group.add(bullet)
 
         if player_1.in_air:
             player_1.update_action(2)# jump
@@ -74,6 +89,10 @@ while game_is_running:
                 pass
             if event.key ==pygame.K_w:
                 player_1.jump = True
+                pass
+            if event.key == pygame.K_PERIOD:
+                player_1.shoot = True
+                pass
 
 
         #keyboard input(keyup)
@@ -84,7 +103,9 @@ while game_is_running:
             if event.key == pygame.K_a:
                 player_1.moving_left = False
                 pass
-
+            if event.key == pygame.K_PERIOD:
+                player_1.shoot = False
+                pass
 
 
 

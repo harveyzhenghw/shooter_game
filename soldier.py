@@ -21,6 +21,8 @@ class Soldier(pygame.sprite.Sprite):
         self.moving_right = False
         self.moving_left = False
 
+        self.shoot = False
+
         self.flip = False
         self.direction = 1
 
@@ -64,7 +66,7 @@ class Soldier(pygame.sprite.Sprite):
                     img = pygame.transform.scale(
                     original_img,
                     (original_img.get_width()*scale, original_img.get_height()*scale)
-                    )
+                    ).convert_alpha()
                 
 
                     temp_list.append(img)
