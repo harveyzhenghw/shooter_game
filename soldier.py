@@ -1,5 +1,6 @@
 #import and int
 import pygame, os
+from bullet import Bullet
 pygame.init()
 max_accelaration_in_seconds = 0.3
 GRAVITY = 0.5
@@ -168,3 +169,7 @@ class Soldier(pygame.sprite.Sprite):
         self.rect.y += int(dy)
 
     
+    def shoot_a_bullet(self, screen_width):
+        bullet = Bullet(self.rect.centerx + (self.rect.size[0]*0.6*self.direction),self.rect.centery,self.direction,screen_width)
+        self.shoot = False
+        return bullet
