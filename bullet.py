@@ -18,3 +18,7 @@ class Bullet(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = (x_pos, y_pos)
         self.direction = direction
+
+    def update(self):
+        #move bullet
+        self.rect.x += self.speed* self.direction
