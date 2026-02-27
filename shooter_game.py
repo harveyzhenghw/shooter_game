@@ -48,7 +48,7 @@ while game_is_running:
 
         if player_1.shoot:
             
-            bullet_group.add(player_1.shoot_a_bullet(SCREEN_WIDTH))
+           player_1.shoot_a_bullet(SCREEN_WIDTH,bullet_group)
 
         if player_1.in_air:
             player_1.update_action(2)# jump
@@ -64,7 +64,7 @@ while game_is_running:
         #moving player rect
         player_1.move()
     #update animation
-    player_1.update_animation()
+    player_1.update_player()
     #display player img at player rect pos
     player_1.draw(screen)
     #ENEMY
