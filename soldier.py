@@ -7,7 +7,7 @@ GRAVITY = 0.5
 JUMP_FORCE = 12
 
 class Soldier(pygame.sprite.Sprite):
-    def __init__(self, char_type, x_pos, y_pos, scale, speed):
+    def __init__(self, char_type, x_pos, y_pos, scale, speed, ammo):
         super().__init__()
         self.alive = True
 
@@ -24,6 +24,9 @@ class Soldier(pygame.sprite.Sprite):
 
         self.shoot_cooldown = 0
         self.shoot = False
+
+        self.ammo = ammo
+        self.start_ammo = self.ammo
 
         self.flip = False
         self.direction = 1
@@ -176,10 +179,11 @@ class Soldier(pygame.sprite.Sprite):
 
     
     def shoot_a_bullet(self, screen_width, bullet_group):
-        if self.shoot_cooldown == 0:
+        if self.shoot_cooldown == 0 and self.ammo>0:
             #At 100 FPS -> 20/60 = 0.33 seconds
             #The lower the number the faster you can shoot
             self.shoot_cooldown = 20
+            self.ammo -= 1            
 
             bullet = Bullet(self.rect.centerx + (self.rect.size[0]*0.6*self.direction),self.rect.centery,self.direction,screen_width)
             self.shoot = False
