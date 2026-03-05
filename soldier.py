@@ -7,9 +7,11 @@ GRAVITY = 0.5
 JUMP_FORCE = 12
 
 class Soldier(pygame.sprite.Sprite):
-    def __init__(self, char_type, x_pos, y_pos, scale, speed, ammo):
+    def __init__(self,health, char_type, x_pos, y_pos, scale, speed, ammo):
         super().__init__()
         self.alive = True
+        self.health = health
+        self.max_helth = self.health#we need it for health bar for the future
 
         self.char_type = char_type
 
@@ -102,8 +104,12 @@ class Soldier(pygame.sprite.Sprite):
             if self.frame_index >= len(self.animation_list[self.action]):
                 self.frame_index = 0
 
-    def update_player(self):
+    def update_soldier(self):
         self.update_animation()
+        #check if it the soldier_alive
+        self.check_alive()
+
+
         if self.shoot_cooldown > 0:
             self.shoot_cooldown -= 1
 
@@ -123,6 +129,17 @@ class Soldier(pygame.sprite.Sprite):
 
     def draw(self, screen):
         screen.blit(pygame.transform.flip(self.image, self.flip, False), self.rect)
+
+    def check_alive(self):
+        if self.health <=0:
+            self.health = 0
+            self.speed = 0
+            self.alive = False
+            self.update_action(3)
+
+
+
+
     def move(self):
         #reset movment
         dx = 0

@@ -22,16 +22,18 @@ game_is_running = True
 background_color = (0,0,0)
 RED = (255,0,0)
 #player
-player_1 = Soldier(char_type="player",x_pos = 200, y_pos = 465, scale=2, speed = 5, ammo=10)
-enemy_1= Soldier(char_type="enemy",x_pos = 400, y_pos = 465, scale=2, speed = 5, ammo=10)
+player_1 = Soldier(health = 100,char_type="player",x_pos = 200, y_pos = 465, scale=2, speed = 5, ammo=10)
+enemy_1= Soldier(health = 50 ,char_type="enemy",x_pos = 400, y_pos = 465, scale=2, speed = 5, ammo=10)
 
 # create sprite groups
 #group for bullet
 bullet_group = pygame.sprite.Group()
 #group for soldier
-soldier_group = pygame.sprite.Group()
-soldier_group.add(enemy_1)
-soldier_group.add(player_1)
+enemy_group = pygame.sprite.Group()
+enemy_group.add(enemy_1)
+
+#player group
+player_group = pygame.sprite.GroupSingle(player_1)
 
 #game loop
 while game_is_running:
@@ -42,7 +44,7 @@ while game_is_running:
     pygame.draw.line(screen, RED, (0,500), (SCREEN_WIDTH,500), 10)
 
     #update and draw groups
-    bullet_group.update(soldier_group = soldier_group)
+    bullet_group.update(player = player_group, enemy_group = enemy_group)
 
     bullet_group.draw(screen)
     
@@ -67,7 +69,7 @@ while game_is_running:
         #moving player rect
         player_1.move()
     #update animation
-    player_1.update_player()
+    player_1.update_soldier()
     #display player img at player rect pos
     player_1.draw(screen)
     #ENEMY

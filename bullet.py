@@ -20,20 +20,38 @@ class Bullet(pygame.sprite.Sprite):
         self.direction = direction
         self.screen_width = screen_width
 
-    def update(self, soldier_group):
+    def update(self,player,enemy_group):
         #move bullet
         self.rect.x += self.speed* self.direction
         #check if bullet is off screen
         if self.rect.right < 0 or self.rect.left > self.screen_width:
             self.kill()
 
-        #hit ANY soldier
+        
+            if pygame.sprite.spritecollide(self,player,False):
+                
+                    if player.alive:
+                        player_health -= 10
+                        #delete bullet
+                        self.kill
+                        
+                        return
 
-        hits = pygame.sprite.spritecollide(self,soldier_group, False)
+
+
+
+
+
+
+
+        #hit ANY enemy
+
+        hits = pygame.sprite.spritecollide(self,enemy_group, False)
         if hits:
-            for soldier in hits:
-                if soldier.alive:
-                    #optional damage logic
-                    #soldier.helth-=10
+            for enemy in hits:
+                if enemy.alive:
+                    #bullet_hit_logic
+                    enemy.health-=25
+                    #delete bullet
                     self.kill()
                     return
