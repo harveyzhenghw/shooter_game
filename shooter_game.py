@@ -26,9 +26,12 @@ player_1 = Soldier(char_type="player",x_pos = 200, y_pos = 465, scale=2, speed =
 enemy_1= Soldier(char_type="enemy",x_pos = 400, y_pos = 465, scale=2, speed = 5, ammo=10)
 
 # create sprite groups
-
+#group for bullet
 bullet_group = pygame.sprite.Group()
-
+#group for soldier
+soldier_group = pygame.sprite.Group()
+soldier_group.add(enemy_1)
+soldier_group.add(player_1)
 
 #game loop
 while game_is_running:
@@ -39,7 +42,7 @@ while game_is_running:
     pygame.draw.line(screen, RED, (0,500), (SCREEN_WIDTH,500), 10)
 
     #update and draw groups
-    bullet_group.update()
+    bullet_group.update(soldier_group = soldier_group)
 
     bullet_group.draw(screen)
     
