@@ -28,21 +28,14 @@ class Bullet(pygame.sprite.Sprite):
             self.kill()
 
         
-            if pygame.sprite.spritecollide(self,player,False):
+        if pygame.sprite.spritecollide(self,player,False):
                 
-                    if player.alive:
-                        player_health -= 10
-                        #delete bullet
-                        self.kill
+            if player.alive:
+                player_health -= 10
+                #delete bullet
+                self.kill
                         
-                        return
-
-
-
-
-
-
-
+                return
 
         #hit ANY enemy
 
