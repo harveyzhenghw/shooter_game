@@ -74,6 +74,8 @@ while game_is_running:
     player_1.draw(screen)
     #ENEMY
     enemy_1.draw(screen)
+    #update animation
+    enemy_1.update_soldier()
   
     #game events
     for event in pygame.event.get():
