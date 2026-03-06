@@ -13,7 +13,10 @@ class Grenade(pygame.sprite.Sprite):
 
         grenade_img = pygame.image.load(f"./assets/img/icons/grenade.png").convert_alpha()
 
-        self.speed = 10
+
+        self.vel_y = -10
+        self.timer = 100
+        self.speed = 5
         self.image = grenade_img
         self.rect = self.image.get_rect()
         self.rect.center = (x_pos, y_pos)
