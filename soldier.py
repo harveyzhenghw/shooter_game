@@ -8,7 +8,7 @@ GRAVITY = 0.5
 JUMP_FORCE = 12
 
 class Soldier(pygame.sprite.Sprite):
-    def __init__(self,health, char_type, x_pos, y_pos, scale, speed, ammo):
+    def __init__(self,health, char_type, x_pos, y_pos, scale, speed, ammo, grenades):
         super().__init__()
         self.alive = True
         self.health = health
@@ -32,6 +32,7 @@ class Soldier(pygame.sprite.Sprite):
         self.start_ammo = self.ammo
 
         self.throwing_grenade = False
+        self.grenades = grenades
 
         self.flip = False
         self.direction = 1
@@ -210,15 +211,35 @@ class Soldier(pygame.sprite.Sprite):
 
 
 
+    
+    
+    
+    
+    
     def throw_a_grenade(self,screen_width, grenade_group):
-        grenade = Grenade(
-            self.rect.centerx + (self.rect.size[0]*0.5*self.direction),
-            self.rect.top,
-            self.direction,
-            screen_width
 
-        )
+        
+            #At 100 FPS -> 20/60 = 0.33 seconds
+            #The lower the number the faster you can shoot
+            
+            if self.shoot_cooldown == 0 and self.grenades > 0:
+                self.shoot_cooldown = 20
+                self.grenades -= 1
+                 
 
 
-        grenade_group.add(grenade)
-        self.throwing_grenade = False
+
+
+
+
+                grenade = Grenade(
+                    self.rect.centerx + (self.rect.size[0]*0.5*self.direction),
+                    self.rect.top,
+                    self.direction,
+                    screen_width
+
+                )
+
+
+                grenade_group.add(grenade)
+                self.throwing_grenade = False

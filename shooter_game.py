@@ -22,8 +22,8 @@ game_is_running = True
 background_color = (0,0,0)
 RED = (255,0,0)
 #player
-player_1 = Soldier(health = 100,char_type="player",x_pos = 200, y_pos = 465, scale=2, speed = 5, ammo=10)
-enemy_1= Soldier(health = 50 ,char_type="enemy",x_pos = 400, y_pos = 465, scale=2, speed = 5, ammo=10)
+player_1 = Soldier(health = 100,char_type="player",x_pos = 200, y_pos = 465, scale=2, speed = 5, ammo=10, grenades=5)
+enemy_1= Soldier(health = 50 ,char_type="enemy",x_pos = 400, y_pos = 465, scale=2, speed = 5, ammo=10, grenades=5)
 
 # create sprite groups
 #group for bullet
