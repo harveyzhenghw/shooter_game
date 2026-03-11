@@ -62,7 +62,11 @@ while game_is_running:
         if player_1.shoot:
             
            player_1.shoot_a_bullet(SCREEN_WIDTH,bullet_group)
-           player_1.throw_a_grenade(SCREEN_WIDTH,grenade_group)
+
+
+
+        if player_1.throwing_grenade:
+            player_1.throw_a_grenade(SCREEN_WIDTH,grenade_group)
 
         if player_1.in_air:
             player_1.update_action(2)# jump
@@ -110,7 +114,7 @@ while game_is_running:
                 player_1.shoot = True
                 pass
             if event.key == pygame.K_e:
-                player_1.throwing_grenadet = True
+                player_1.throwing_grenade = True
                 pass
 
 
@@ -125,6 +129,9 @@ while game_is_running:
                 pass
             if event.key == pygame.K_PERIOD:
                 player_1.shoot = False
+                pass
+            if event.key == pygame.K_e:
+                player_1.throwing_grenade = False
                 pass
 
 
