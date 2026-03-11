@@ -32,23 +32,23 @@ class Grenade(pygame.sprite.Sprite):
             self.kill()
 
         
-        if pygame.sprite.spritecollide(self,player,False):
+        # if pygame.sprite.spritecollide(self,player,False):
                 
-            if player.alive:
-                player_health -= 10
-                #delete bullet
-                self.kill
+        #     if player.alive:
+        #         player_health -= 10
+        #         #delete bullet
+        #         self.kill
                         
-                return
+        #         return
 
         #hit ANY enemy
 
-        hits = pygame.sprite.spritecollide(self,enemy_group, False)
-        if hits:
-            for enemy in hits:
-                if enemy.alive:
-                    #bullet_hit_logic
-                    enemy.health-=25
-                    #delete bullet
-                    self.kill()
-                    return
+        # hits = pygame.sprite.spritecollide(self,enemy_group, False)
+        # if hits:
+        #     for enemy in hits:
+        #         if enemy.alive:
+        #             #bullet_hit_logic
+        #             enemy.health-=25
+        #             #delete bullet
+        #             self.kill()
+        #             return

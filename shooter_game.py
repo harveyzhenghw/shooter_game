@@ -28,6 +28,8 @@ enemy_1= Soldier(health = 50 ,char_type="enemy",x_pos = 400, y_pos = 465, scale=
 # create sprite groups
 #group for bullet
 bullet_group = pygame.sprite.Group()
+#create sprite group for all grenades
+grenade_group = pygame.sprite.Group()
 #group for soldier
 enemy_group = pygame.sprite.Group()
 enemy_group.add(enemy_1)
@@ -47,6 +49,12 @@ while game_is_running:
     bullet_group.update(player = player_group, enemy_group = enemy_group)
 
     bullet_group.draw(screen)
+
+
+    #update and draw groups
+    grenade_group.update(player = player_group, enemy_group = enemy_group)
+
+    grenade_group.draw(screen)
     
     #PLAYER
     if player_1.alive:
@@ -54,6 +62,7 @@ while game_is_running:
         if player_1.shoot:
             
            player_1.shoot_a_bullet(SCREEN_WIDTH,bullet_group)
+           player_1.throw_a_grenade(SCREEN_WIDTH,grenade_group)
 
         if player_1.in_air:
             player_1.update_action(2)# jump
@@ -100,6 +109,10 @@ while game_is_running:
             if event.key == pygame.K_PERIOD:
                 player_1.shoot = True
                 pass
+            if event.key == pygame.K_e:
+                player_1.throwing_grenadet = True
+                pass
+
 
 
         #keyboard input(keyup)

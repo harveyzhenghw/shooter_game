@@ -1,6 +1,7 @@
 #import and int
 import pygame, os
 from bullet import Bullet
+from grenade import Grenade
 pygame.init()
 max_accelaration_in_seconds = 0.3
 GRAVITY = 0.5
@@ -30,6 +31,8 @@ class Soldier(pygame.sprite.Sprite):
         self.ammo = ammo
         self.start_ammo = self.ammo
 
+        self.throwing_grenade = False
+
         self.flip = False
         self.direction = 1
 
@@ -47,11 +50,7 @@ class Soldier(pygame.sprite.Sprite):
 
 
 
-        # original_img = pygame.image.load(f"./assets/img/{self.char_type}/Idle/0.png")
-        # self.image = pygame.transform.scale(
-        #     original_img,
-        #     (original_img.get_width()*scale, original_img.get_height()*scale)
-        # )
+        
 
         self.animation_list = []
         self.frame_index = 0
@@ -208,3 +207,18 @@ class Soldier(pygame.sprite.Sprite):
             bullet = Bullet(self.rect.centerx + (self.rect.size[0]*0.6*self.direction),self.rect.centery,self.direction,screen_width)
             self.shoot = False
             bullet_group.add(bullet)
+
+
+
+    def throw_a_grenade(self,screen_width, grenade_group):
+        grenade = Grenade(
+            self.rect.centerx + (self.rect.size[0]*0.5*self.direction),
+            self.rect.top,
+            self.direction,
+            screen_width
+
+        )
+
+
+        grenade_group.add(grenade)
+        self.throwing_grenade = False
