@@ -1,6 +1,6 @@
 import pygame
 pygame.init()
-
+GRAVITY = 0.5
 
 
 
@@ -25,30 +25,13 @@ class Grenade(pygame.sprite.Sprite):
 
 
     def update(self,player,enemy_group):
-        #move bullet
-        self.rect.x += self.speed* self.direction
-        #check if bullet is off screen
-        if self.rect.right < 0 or self.rect.left > self.screen_width:
-            self.kill()
-
         
-        # if pygame.sprite.spritecollide(self,player,False):
-                
-        #     if player.alive:
-        #         player_health -= 10
-        #         #delete bullet
-        #         self.kill
-                        
-        #         return
+        self.vel_y += GRAVITY
 
-        #hit ANY enemy
+        dx = self.direction*self.speed
+        dy = self.vel_y
 
-        # hits = pygame.sprite.spritecollide(self,enemy_group, False)
-        # if hits:
-        #     for enemy in hits:
-        #         if enemy.alive:
-        #             #bullet_hit_logic
-        #             enemy.health-=25
-        #             #delete bullet
-        #             self.kill()
-        #             return
+        #update grenade position
+
+        self.rect.x += dx
+        self.rect.y += dy
