@@ -1,52 +1,47 @@
+# import and init
 import pygame
+
 pygame.init()
-GRAVITY = 0.5
 
-
-
-
+GRAVITY = 0.6
 
 
 class Grenade(pygame.sprite.Sprite):
-    def __init__(self,x_pos,y_pos, direction, screen_width):
-        super(). __init__()
+    def __init__(self, x_pos, y_pos, direction, screen_width):
+        super().__init__()
 
-        self.image = pygame.image.load(f"./assets/img/icons/grenade.png").convert_alpha()
+        # load grenade image
+        self.image = pygame.image.load(
+            f"./assets/img/icons/grenade.png"
+        ).convert_alpha()
 
-        #movement and lifetime properties
+        # movement and liftime properties
+        self.speed = 5
         self.vel_y = -10
         self.timer = 100
-        self.speed = 5
-        #position and direction
+
+        # position and direction
         self.rect = self.image.get_rect()
         self.rect.center = (x_pos, y_pos)
         self.direction = direction
         self.screen_width = screen_width
 
+    def update(self, player, enemy_group):
 
-    def update(self,player,enemy_group):
-        
         self.vel_y += GRAVITY
 
-        dx = self.direction*self.speed
+        dx = self.direction * self.speed
         dy = self.vel_y
 
-        #check collision with fake floor
+        # check collision with fake floor
         if self.rect.bottom + dy > 500:
-            dy = 500-self.rect.bottom
+            dy = 500 - self.rect.bottom
             self.speed = 0
-            
 
-
-        #update grenade position
-
+        # update grenade position
         self.rect.x += dx
         self.rect.y += dy
 
-
-        #check if grenade is off screen
-        # if self.rect.right < 0 or self.rect.left > self.screen_width:
-        #     self.kill()
         if self.rect.left + dx < 0 or self.rect.right + dx > self.screen_width:
             self.direction *= -1
-            dx = self.direction = self.speed
+            dx = self.direction * self.speed
