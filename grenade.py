@@ -44,6 +44,9 @@ class Grenade(pygame.sprite.Sprite):
         self.rect.y += dy
 
 
-         #check if grenade is off screen
-        if self.rect.right < 0 or self.rect.left > self.screen_width:
-            self.kill()
+        #check if grenade is off screen
+        # if self.rect.right < 0 or self.rect.left > self.screen_width:
+        #     self.kill()
+        if self.rect.left + dx < 0 or self.rect.right + dx > self.screen_width:
+            self.direction *= -1
+            dx = self.direction = self.speed
