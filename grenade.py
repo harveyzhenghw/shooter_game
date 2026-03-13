@@ -31,6 +31,13 @@ class Grenade(pygame.sprite.Sprite):
         dx = self.direction*self.speed
         dy = self.vel_y
 
+        #check collision with fake floor
+        if self.rect.bottom + dy > 500:
+            dy = 500-self.rect.bottom
+            self.speed = 0
+            
+
+
         #update grenade position
 
         self.rect.x += dx
