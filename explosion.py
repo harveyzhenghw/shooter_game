@@ -47,7 +47,7 @@ class Explosion(pygame.sprite.Sprite):
         if self.counter> EXPLOSION_SPEED:
             self.counter = 0 
             self.frame_index += 1
-            self.image = self.image[self.frame_index]
+            self.image = self.images[self.frame_index]
         
 
    
