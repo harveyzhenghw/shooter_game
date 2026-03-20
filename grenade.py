@@ -1,6 +1,6 @@
 # import and init
 import pygame
-
+from explosion import Explosion
 pygame.init()
 
 GRAVITY = 0.6
@@ -26,7 +26,7 @@ class Grenade(pygame.sprite.Sprite):
         self.direction = direction
         self.screen_width = screen_width
 
-    def update(self, player, enemy_group):
+    def update(self, player, enemy_group, explosion_group):
 
         self.vel_y += GRAVITY
 
@@ -45,3 +45,11 @@ class Grenade(pygame.sprite.Sprite):
         if self.rect.left + dx < 0 or self.rect.right + dx > self.screen_width:
             self.direction *= -1
             dx = self.direction * self.speed
+
+        #counter timer
+
+        self.timer -= 1
+        if self.timer <= 0:
+            self.kill()
+            explosion = Explosion(self.rect.x, self.rect.y, 1)
+            explosion_group.add(explosion)
