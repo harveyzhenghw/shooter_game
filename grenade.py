@@ -4,6 +4,8 @@ from explosion import Explosion
 pygame.init()
 
 GRAVITY = 0.6
+TILE_SIZE = 100
+
 
 
 class Grenade(pygame.sprite.Sprite):
@@ -53,3 +55,12 @@ class Grenade(pygame.sprite.Sprite):
             self.kill()
             explosion = Explosion(self.rect.x, self.rect.y, 1)
             explosion_group.add(explosion)
+
+
+            #do damage to anyone near(no levels of nearness)
+
+            ##do damage to player
+            player = player.sprite
+            if (abs(self.rect.centerx - player.rect.centerx)<TILE_SIZE * 2
+                 and abs(self.rect.centery - player.rect.centery)<TILE_SIZE):
+                player.health -= 50
