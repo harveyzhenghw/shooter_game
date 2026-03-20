@@ -37,6 +37,17 @@ class Explosion(pygame.sprite.Sprite):
         self.rect.center = (x_pos, y_pos)
 
         self.counter = 0
+
+    def update(self):
+
+        EXPLOSION_SPEED = 4
+
+        #update explosion animation
+        self.counter += 1
+        if self.counter> EXPLOSION_SPEED:
+            self.counter = 0 
+            self.frame_index += 1
+            self.image = self.image[self.frame_index]
         
 
    

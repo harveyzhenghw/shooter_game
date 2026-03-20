@@ -60,7 +60,7 @@ while game_is_running:
     grenade_group.draw(screen)
     #explosion
     
-    explosion_group.update(player = player_group, enemy_group = enemy_group)
+    explosion_group.update()
     explosion_group.draw(screen)
 
 
